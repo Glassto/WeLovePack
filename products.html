@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html id="html" class="" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./twconf.js"></script>
+    <script src="./scripts/products.js" defer></script>
+    <link href="./src/output.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet" />
+    <title>WeLovePacks</title>
+    <style>
+      .show {
+        display: block;
+      }
+      body {
+        margin: 0px;
+        @media (max-width: 319px) {
+          display: none;
+        }
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 2px rgb(156, 156, 156);
+        border-radius: 3px;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #babfc4;
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body id="body">
+    <nav id="navbar" class="sticky top-0 z-40 w-full flex-none shadow-sm transition-all duration-500 lg:z-50 dark:border-white/[0.06] bg-white supports-backdrop-blur:bg-white/95 dark:bg-white">
+      <div id="nav" class="max-w-8xl mx-auto border-solid border-b border-slate-200">
+        <div class="py-4 0 lg:px-8 mx-4 lg:mx-0">
+          <div class="relative flex justify-between items-center lg:mx-16 sm:mx-8 phoneS:mx-4 transition-all ease-in-out duration-800">
+            <div>
+              <a href="index.html">
+                <img src="./img/images/logo-black.png" alt="" class="lg:h-14 phoneS:h-12" />
+              </a>
+            </div>
+            <div class="flex items-center content-end lg:gap-6 md:gap-2 phoneS:gap-4 font-display font-medium overflow-auto">
+              <div class="sm:flex phoneS:hidden items-center gap-2 px-3 py-2 rounded-lg border-solid border border-transparent hover:bg-slate-50 hover:border-slate-200 cursor-pointer" onclick="scrollToDiv('productsDiv')">
+                <img class="md:h-6 sm:h-5" src="img/icons/products.svg" alt="" />
+                <p class="md:text-base sm:text-sm font-semibold text-gray-700 bg-transparent">Produse</p>
+              </div>
+              <div class="sm:flex phoneS:hidden items-center gap-2 px-3 py-2 rounded-lg border-solid border border-transparent hover:bg-slate-50 hover:border-slate-200 cursor-pointer" onclick="scrollToDiv('contactDiv')">
+                <img class="md:h-6 sm:h-5" src="img/icons/contact.svg" alt="" />
+                <p class="md:text-base sm:text-sm font-semibold text-gray-700 bg-transparent">Contact</p>
+              </div>
+              <div class="sm:flex phoneS:hidden items-center gap-2 px-3 py-2 rounded-lg border-solid border border-transparent hover:bg-slate-50 hover:border-slate-200 cursor-pointer" onclick="scrollToDiv('deliveryDiv')">
+                <img class="md:h-6 sm:h-5" src="img/icons/delivery.svg" alt="" />
+                <p class="md:text-base sm:text-sm font-semibold text-gray-700 bg-transparent">Livrare</p>
+              </div>
+
+              <div class="flex items-center relative">
+                <button id="sideMenuButton" class="sm:hidden phoneS:block bg-slate-50 rounded-lg border-solid border border-slate-200" onclick="openSideMenu()">
+                  <img id="sideMenuImageToggle" class="h-10 p-2" src="./img/icons/menu.svg" alt="" />
+                </button>
+                <button id="categoryMenuButton" class="hidden bg-slate-50 rounded-lg border-solid border border-slate-200" onclick="openCategoryMenu()">
+                  <img id="categoryMenuImageToggle" class="h-10 p-2 hidden" src="./img/icons/menu.svg" alt="" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="cart-men hidden fixed z-30 top-1/2 left-1/2 h-36 w-96 bg-slate-200 border border-slate-300"></div>
+
+    <div id="overlay" class="sm:hidden phoneS:fixed top-[81px] right-0 w-0 h-full backdrop-blur-0 dark:bg-main-blue/20 z-[18] transition-all duration-[600ms]"></div>
+    <div id="sideMenu" class="sm:hidden phoneS:block h-full w-0 fixed top-20 z-20 right-0 px-0 bg-white border-solid border-l border-slate-200 overflow-x-hidden transition-all duration-200">
+      <div class="flex flex-col py-3 gap-2">
+        <div class="flex items-center gap-2 pl-3 py-3 select-none rounded-lg border-solid border bg-slate-50 border-slate-200 cursor-pointer" onclick="scrollToDiv('productsDiv')">
+          <img src="img/icons/products.svg" alt="" />
+          <p class="font-display font-semibold text-base text-gray-700">Produse</p>
+        </div>
+        <div class="flex items-center gap-2 pl-3 py-3 select-none rounded-lg border-solid border bg-slate-50 border-slate-200 cursor-pointer" onclick="scrollToDiv('contactDiv')">
+          <img src="img/icons/contact.svg" alt="" />
+          <p class="font-display font-semibold text-base text-gray-700">Contact</p>
+        </div>
+        <div class="flex items-center gap-2 pl-3 py-3 select-none rounded-lg border-solid border bg-slate-50 border-slate-200 cursor-pointer" onclick="scrollToDiv('deliveryDiv')">
+          <img src="img/icons/delivery.svg" alt="" />
+          <p class="font-display font-semibold text-base text-gray-700">Livrare</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="categoryMenu" class="sm:hidden phoneS:block h-full w-0 fixed top-20 z-20 right-0 px-0 bg-white border-solid border-l border-slate-200 overflow-x-hidden transition-all duration-300">
+      <div class="sm:hidden phoneS:block mt-3 md:pl-6 sm:pl-4 pr-2 md:min-w-64 sm:min-w-50">
+        <div class="max-h-[calc(100vh-6.2rem)] overflow-y-auto">
+          <div class="flex items-center gap-2 select-none mb-4">
+            <img class="h-6" src="img/icons/category.svg" alt="" />
+            <p class="uppercase font-display md:text-base sm:text-sm font-extrabold text-base text-gray-700 pt-1">Categorii</p>
+          </div>
+          <div class="category ml-[11px] overflow-x-hidden">
+            <p id="allProductsMobile" class="categoryB block font-display md:text-base sm:text-sm text-nowrap overflow-x-hidden border-l-[1.7px] pl-4 py-1.25 -ml-px border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Toate', this)">
+              Toate
+            </p>
+            <p class="categoryB block font-display md:text-base sm:text-sm text-nowrap overflow-x-hidden border-l-[1.7px] pl-4 py-1.25 -ml-px border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Caserole', this)">Caserole</p>
+            <p class="categoryB block font-display md:text-base sm:text-sm text-nowrap overflow-x-hidden border-l-[1.7px] pl-4 py-1.25 -ml-px border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Boluri', this)">Boluri</p>
+            <p class="categoryB block font-display md:text-base sm:text-sm text-nowrap overflow-x-hidden border-l-[1.7px] pl-4 py-1.25 -ml-px border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Farfurii', this)">Farfurii</p>
+            <p class="categoryB block font-display md:text-base sm:text-sm text-nowrap overflow-x-hidden border-l-[1.7px] pl-4 py-1.25 -ml-px border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Platouri Aluminiu', this)">
+              Platouri Aluminiu
+            </p>
+            <p class="categoryB block font-display md:text-base sm:text-sm text-nowrap overflow-x-hidden border-l-[1.7px] pl-4 py-1.25 -ml-px border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Platouri Plastic', this)">
+              Platouri Plastic
+            </p>
+            <p class="categoryB block font-display md:text-base sm:text-sm text-nowrap overflow-x-hidden border-l-[1.7px] pl-4 py-1.25 -ml-px border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Tacâmuri', this)">Tacâmuri</p>
+            <p class="categoryB block font-display md:text-base sm:text-sm text-nowrap overflow-x-hidden border-l-[1.7px] pl-4 py-1.25 -ml-px border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Pahare', this)">Pahare</p>
+            <p class="categoryB block font-display md:text-base sm:text-sm text-nowrap overflow-x-hidden border-l-[1.7px] pl-4 py-1.25 -ml-px border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Folii/Hârtii Alimentare', this)">
+              Folii/Hârtii Alimentare
+            </p>
+            <p class="categoryB block font-display md:text-base sm:text-sm text-nowrap overflow-x-hidden border-l-[1.7px] pl-4 py-1.25 -ml-px border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Cutii Pizza', this)">Cutii Pizza</p>
+            <p class="categoryB block font-display md:text-base sm:text-sm text-nowrap overflow-x-hidden border-l-[1.7px] pl-4 py-1.25 -ml-px border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Alte Produse', this)">Alte Produse</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="overlayEffect" class="fixed top-[81px] right-0 w-0 h-full backdrop-blur-0 dark:bg-main-blue/20 z-[18] transition-all duration-[600ms]"></div>
+
+    <p class="hidden" id="_activeListStyle">List</p>
+    <p class="hidden" id="_activeCategoryStyle">Toate</p>
+    <p class="hidden" id="_activePrice">99</p>
+
+    <div class="flex items-start justify-between sm:min-h-[600px] phoneS:min-h-[500px]">
+      <div class="sm:block phoneS:hidden mt-8 md:pl-6 sm:pl-4 pr-2 md:min-w-64 sm:min-w-50">
+        <div id="fixedCategory" class="fixed max-h-[calc(100vh-8rem)] overflow-y-auto">
+          <div class="flex items-center gap-2 select-none mb-4">
+            <img class="h-6" src="img/icons/category.svg" alt="" />
+            <p class="uppercase font-display md:text-base sm:text-sm font-extrabold text-base text-gray-700 pt-1">Categorii</p>
+          </div>
+          <div class="category ml-[11px]">
+            <p id="allProductsDesktop" class="categoryB block font-display md:text-base sm:text-sm border-l-[1.7px] pl-4 py-1 -ml-px mr-5 border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Toate', this)">Toate</p>
+            <p class="categoryB block font-display md:text-base sm:text-sm border-l-[1.7px] pl-4 py-1.25 -ml-px mr-5 border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Caserole', this)">Caserole</p>
+            <p class="categoryB block font-display md:text-base sm:text-sm border-l-[1.7px] pl-4 py-1.25 -ml-px mr-5 border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Boluri', this)">Boluri</p>
+            <p class="categoryB block font-display md:text-base sm:text-sm border-l-[1.7px] pl-4 py-1.25 -ml-px mr-5 border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Farfurii', this)">Farfurii</p>
+            <p class="categoryB block font-display md:text-base sm:text-sm border-l-[1.7px] pl-4 py-1.25 -ml-px mr-5 border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Platouri Aluminiu', this)">Platouri Aluminiu</p>
+            <p class="categoryB block font-display md:text-base sm:text-sm border-l-[1.7px] pl-4 py-1.25 -ml-px mr-5 border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Platouri Plastic', this)">Platouri Plastic</p>
+            <p class="categoryB block font-display md:text-base sm:text-sm border-l-[1.7px] pl-4 py-1.25 -ml-px mr-5 border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Tacâmuri', this)">Tacâmuri</p>
+            <p class="categoryB block font-display md:text-base sm:text-sm border-l-[1.7px] pl-4 py-1.25 -ml-px mr-5 border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Pahare', this)">Pahare</p>
+            <p class="categoryB block font-display md:text-base sm:text-sm border-l-[1.7px] pl-4 py-1.25 -ml-px mr-5 border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Folii/Hârtii Alimentare', this)">Folii/Hârtii Alimentare</p>
+            <p class="categoryB block font-display md:text-base sm:text-sm border-l-[1.7px] pl-4 py-1.25 -ml-px mr-5 border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Cutii Pizza', this)">Cutii Pizza</p>
+            <p class="categoryB block font-display md:text-base sm:text-sm border-l-[1.7px] pl-4 py-1.25 -ml-px mr-5 border-gray-400 hover:border-green-500 text-slate-600 hover:text-green-600 cursor-pointer" onclick="categoryProduct('Alte Produse', this)">Alte Produse</p>
+          </div>
+        </div>
+      </div>
+      <div id="productsDiv" class="d-product w-full sm:min-h-[600px] phoneS:min-h-96 mt-8 md:mb-16 sm:mb-12 phoneS:mb-10 lg:mr-32 sm:mr-8 phoneS:mx-2 transition-all ease-in-out duration-400">
+        <div class="flex justify-between mb-4">
+          <div>
+            <p class="uppercase font-display font-black sm:text-3xl phoneS:text-2xl tracking-wide">PRODUSE</p>
+          </div>
+          <div class="flex justify-between items-center gap-3">
+            <div class="sm:hidden phoneS:block">
+              <button class="flex items-center gap-1 min-h-10 py-1 px-2 border border-slate-200 bg-slate-200/70 rounded-lg" onclick="openCategoryMenu()">
+                <img class="sm:min-w-8 sm:h-8 phoneS:min-w-[30px] phoneS:h-[30px] p-1" src="img/icons/filter.svg" alt="" />
+                <p class="font-display font-bold sm:text-base phoneS:text-15 text-gray-700 p-1 tracking-wide">Filtru</p>
+              </button>
+            </div>
+            <div class="flex justify-between items-center min-h-10 p-1 gap-1 border border-slate-200 bg-slate-200/70 rounded-lg">
+              <button id="list" class="rounded-md h-full hover:bg-slate-200" onclick="listItems()">
+                <img class="sm:min-w-8 sm:h-8 phoneS:min-w-[30px] phoneS:h-[30px] p-1" src="img/icons/list.svg" alt="" />
+              </button>
+
+              <img class="top-1 h-4 w-1" src="img/icons/dot.svg" alt="" />
+              <button id="grid" class="rounded-md" onclick="gridItems()">
+                <img class="sm:min-w-8 sm:h-8 phoneS:min-w-[30px] phoneS:h-[30px] p-1" src="img/icons/grid.svg" alt="" />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="font-display font-medium text-end sm:text-sm phoneS:text-xs text-gray-500">*toate prețurile includ TVA</div>
+        <div id="lastProduct" class="products-list grid lg:grid-cols-1 md:grid-cols-1 gap-4 phoneS:grid-cols-1 font-display"></div>
+        <div id="lastProduct" class="products-grid grid lg:grid-cols-3 md:grid-cols-2 gap-4 phoneS:grid-cols-2 font-display"></div>
+        <div class="flex w-full items-center mt-3">
+          <div class="w-full h-[0.5px] bg-slate-300"></div>
+          <div class="flex justify-center w-full font-display font-light text-gray-400/80 max-w-6 mb-2 select-none">...</div>
+          <div class="w-full h-[0.5px] bg-slate-300"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="contactDiv" class="lg:mx-16 sm:mx-8 phoneS:mx-2 transition-all ease-in-out duration-400">
+      <div>
+        <p class="uppercase font-display font-black sm:text-3xl phoneS:text-2xl tracking-wide mb-4">CONTACT</p>
+      </div>
+      <div class="flex lg:flex-nowrap phoneS:flex-wrap items-center lg:w-full justify-between lg:gap-9 phoneS:gap-5 mx-3">
+        <div class="flex items-center w-full min-h-14 gap-3">
+          <img class="sm:h-14 phoneS:h-12 p-4 bg-[#333C3D] rounded-lg" src="img/icons/phone.svg" alt="" />
+          <a class="flex items-center w-full font-display font-bold text-main-blue sm:text-lg phoneS:text-base py-4 px-5 sm:h-14 phoneS:h-12 bg-[rgba(234,238,244,255)] rounded-lg border border-solid border-slate-200 hover:border-slate-300" href="tel:0756 430 008">0756 430 008</a>
+        </div>
+        <div class="flex items-center w-full min-h-14 gap-3">
+          <img class="sm:h-14 phoneS:h-12 p-4 bg-[#333C3D] rounded-lg" src="img/icons/facebook.svg" alt="" />
+          <a
+            class="flex items-center w-full font-display font-bold text-main-blue sm:text-lg phoneS:text-base py-4 px-5 sm:h-14 phoneS:h-12 bg-[rgba(234,238,244,255)] rounded-lg border border-solid border-slate-200 hover:border-slate-300"
+            href="https://www.facebook.com/people/We-love-packs/100088191474601"
+            target="_blank"
+            >@welovepacks</a
+          >
+        </div>
+        <div class="flex items-center w-full min-h-14 gap-3">
+          <img class="sm:h-14 phoneS:h-12 p-4 bg-[#333C3D] rounded-lg" src="img/icons/email.svg" alt="" />
+          <a class="flex items-center w-full font-display font-bold text-main-blue sm:text-lg phoneS:text-base py-4 px-4 sm:h-14 phoneS:h-12 bg-[rgba(234,238,244,255)] rounded-lg border border-solid border-slate-200 hover:border-slate-300" href="mailto:welovepacks24@gmail.com"
+            >welovepacks24@gmail.com</a
+          >
+        </div>
+      </div>
+
+      <div class="mt-12 mx-3 flex md:flex-row phoneS:flex-col items-center justify-between lg:gap-14 md:gap-6 phoneS:gap-1">
+        <div class="min-w-100">
+          <div class="flex justify-center">
+            <img class="md:h-80 phoneS:h-64" src="img/images/contact-illustration.svg" alt="" />
+          </div>
+          <div class="mb-5">
+            <p class="font-display font-normal text-gray-600/80 phoneS:text-[13px] mt-5 md:mx-0 phoneS:mx-7 max-w-[600px]">
+              Vă rugăm să completați toate câmpurile și să furnizați cât mai multe detalii relevante în mesajul dumneavoastră, pentru a ne permite să vă oferim un răspuns prompt și specific nevoilor dumneavoastră. <br />
+              <br />
+              Vă mulțumim pentru interesul acordat și așteptăm cu nerăbdare să vă răspundem!
+            </p>
+          </div>
+        </div>
+        <form id="form" class="space-y-4" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="68212b63-a074-48bd-8cc6-68b759b6f75e" />
+          <input type="hidden" name="from_name" value="WeLovePacks" />
+          <div class="flex items-center gap-4">
+            <input required class="font-display font-medium sm:text-base phoneS:text-sm py-3 px-6 w-full border-solid border-2 border-gray-400 focus:border-[#333C3D] focus:outline-gray-700 rounded-lg" type="text" name="First Name" id="" placeholder="Nume..." />
+            <input required class="font-display font-medium sm:text-base phoneS:text-sm py-3 px-6 w-full border-solid border-2 border-gray-400 focus:border-[#333C3D] focus:outline-gray-700 rounded-lg" type="text" name="Last Name" id="" placeholder="Prenume..." />
+          </div>
+
+          <input
+            class="font-display font-medium sm:text-base phoneS:text-sm py-3 px-6 w-full border-solid border-2 border-gray-400 focus:border-[#333C3D] focus:outline-gray-600 invalid:border-pink-600 invalid:text-pink-700 focus:invalid:outline-pink-600 focus:invalid:border-pink-600 rounded-lg"
+            type="email"
+            name="email"
+            id=""
+            placeholder="Email..."
+          />
+          <input required class="font-display font-medium sm:text-base phoneS:text-sm py-3 px-6 my-3 w-full border-solid border-2 border-gray-400 focus:border-[#333C3D] focus:outline-gray-700 rounded-lg" type="text" name="subject" id="" placeholder="Subiect..." />
+          <textarea required class="font-display resize-none sm:text-base phoneS:text-sm font-medium py-3 px-6 h-44 w-full border-solid border-2 border-gray-400 focus:border-[#333C3D] focus:outline-gray-700 rounded-lg" type="text" name="message" id="" placeholder="Scrie..."></textarea>
+          <div class="flex justify-end">
+            <button class="flex items-center bg-sky-500 border-solid border border-blue-500/60 hover:ring-1 hover:ring-sky-500 py-3 px-6 rounded-lg gap-3 cursor-pointer" type="submit">
+              <p class="font-display font-extrabold sm:text-base phoneS:text-sm text-white tracking-wider">Trimite</p>
+              <img class="sm:h-5 phoneS:h-[18px]" src="img/icons/send.svg" alt="" />
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="deliveryDiv" class="mt-10 lg:mx-16 sm:mx-8 phoneS:mx-2 transition-all ease-in-out duration-400">
+      <div>
+        <p class="uppercase font-display font-black sm:text-3xl phoneS:text-2xl tracking-wide mb-4">CONDIȚII DE LIVRARE</p>
+      </div>
+      <div class="mx-3">
+        <ul class="sm:flex items-start sm:gap-16 phoneS:gap-8 marker:text-slate-700 list-disc pl-5 sm:space-y-0 phoneS:space-y-3 list-outside font-display font-normal sm:text-base phoneS:text-sm text-main-blue bg-slate-50 border border-slate-200 rounded-lg py-4">
+          <div class="ml-4 space-y-3 basis-1/2 text-pretty mr-2 leading-normal">
+            <li>Pentru comenzi mai mari de 500 RON, serviciul de curierat este GRATUIT.</li>
+            <li>Pentru comenzi mai mari de 500 RON, vă livrăm produsele comandate în MAXIM 24H în limita a 50 de km de la adresa depozitului nostru.</li>
+            <li>Prețurile pot suferi modificări datorită fluctuației costului de achiziție și transport.</li>
+          </div>
+          <div class="ml-4 space-y-3 basis-1/2 text-pretty mr-2 leading-normal">
+            <li>Ne puteți solicita și alte produse ce nu se găsesc în catalogul nostru.</li>
+            <li>Onorarea comenzilor se face în limita stocului disponibil.</li>
+            <li>Fotografiile au caracter informativ. Dimensiunile, capacitatea și ambalarea produselor pot fi diferite față de ofertă</li>
+          </div>
+        </ul>
+      </div>
+    </div>
+
+    <footer class="bg-main-blue mt-20">
+      <div class="lg:mx-16 sm:mx-8 phoneS:mx-2 pt-4 transition-all ease-in-out duration-400">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start sm:gap-10 phoneS:gap-6 mb-12">
+            <div>
+              <img class="lg:h-14 phoneS:h-12 phoneL:block phoneS:hidden" src="img/images/logo-white.png" alt="" />
+            </div>
+            <div class="flex flex-col font-display font-light tracking-wide sm:text-sm phoneS:text-xs text-white/80 gap-1">
+              <h3 class="font-medium sm:text-base phoneS:text-sm text-white mb-1">Contact</h3>
+              <a href="tel:0756 430 008">Telefon</a>
+              <a href="mailto:welovepacks24@gmail.com">Email</a>
+              <a href="https://www.facebook.com/people/We-love-packs/100088191474601">Facebook</a>
+            </div>
+            <div class="flex flex-col font-display font-light tracking-wide sm:text-sm phoneS:text-xs text-white/80 gap-1">
+              <h3 class="font-medium sm:text-base phoneS:text-sm text-white mb-1">Produse</h3>
+              <div class="flex flex-row gap-3">
+                <div class="flex flex-col gap-1">
+                  <p>Caserole</p>
+                  <p>Boluri</p>
+                  <p class="text-white/50">altele...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <a href="https://www.facebook.com/people/We-love-packs/100088191474601" target="_blank" alt="">
+              <img class="sm:h-8 phoneS:h-7 phoneL:mr-1 phoneS:mr-6" src="img/icons/facebook-white.svg" alt="" />
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="min-h-[0.5px] w-full rounded-3xl bg-slate-50/40"></div>
+          <p class="font-display font-extralight tracking-wide sm:text-xs phoneS:text-[10px] text-center text-white/50 py-2">©2024 We Love Packs, Toate drepturile rezervate</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
